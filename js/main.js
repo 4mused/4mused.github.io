@@ -26,7 +26,9 @@ const router = async () => {
         { path: "/", view: Index },
         { path: "/software", view: Software },
         { path: "/blog", view: Blog },
-        { path: "/blog/test", view: PostView, metadata: { title: "Test post", lead: "This is a test post meant to test functionality", date: "16/6/2022" } },
+
+        //Blog post routes
+        { path: "/blog/test", view: PostView, metadata: { title: "Test post", lead: "This is a test post meant to test functionality", date: "16/06/2022" } },
     ];
 
     window.routes = routes;
