@@ -1,6 +1,7 @@
+import _404 from "../views/_404.js";
 import Index from "../views/index.js";
 import Blog from "../views/Blog.js";
-import PostView from "../views/PostView.js";
+import PostView from "../views/posts/PostView.js";
 import Software from "../views/Software.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
@@ -21,11 +22,14 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
+        { path: "", view: _404 },
         { path: "/", view: Index },
+        { path: "/software", view: Software },
         { path: "/blog", view: Blog },
-        { path: "/blog/:id", view: PostView },
-        { path: "/software", view: Software }
+        { path: "/blog/test", view: PostView, metadata: { title: "Test post", lead: "This is a test post meant to test functionality", date: "16/6/2022" } },
     ];
+
+    window.routes = routes;
 
     // Test each route for potential match
     const potentialMatches = routes.map(route => {
@@ -42,6 +46,14 @@ const router = async () => {
             route: routes[0],
             result: [location.pathname]
         };
+    }
+
+    /* If a route parameter exists try rerouting to that path */
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has("route")) {
+        navigateTo(urlParams.get("route"));
+        return;
     }
 
     const view = new match.route.view(getParams(match));
@@ -61,12 +73,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     router();
 });
-
-window.onload = function () {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
-    if (urlParams.has("route")) {
-        navigateTo(urlParams.get("route"));
-    }
-}
