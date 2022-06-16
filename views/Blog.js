@@ -7,11 +7,49 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        return `
-            <h1>Posts</h1>
-            <p>You are viewing the posts!</p>
+        let html = `
+            <style scoped>
+                .row .col-sm-12 *{
+                    display: inline-block;
+                }
 
-            <a href="/posts/Hello World" class="nav__link" data-link>Settings</a>
+                .row {
+                    margin-bottom: 0;
+                }
+
+                h1 {
+                    margin-bottom: 2rem;
+                }
+
+                article {
+                    margin-bottom: 1rem;
+                }
+            </style>
+            <h1>Blogs</h1>
         `;
+
+        let routes = window.routes;
+
+        routes.forEach(route => {
+            if(route.path.includes("/blog/")){
+            html += `
+            <article>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="${route.path}" data-link><h4>${route.metadata.title}</h4></a>
+                        <p>${route.metadata.date}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>${route.metadata.lead}</p> <a href="${route.path}" data-link>»</a>
+                    </div>
+                </div>
+            </article>
+            `;
+            }
+        });
+        
+        return html;
     }
 }
