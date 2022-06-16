@@ -7,6 +7,21 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
+        let html = "";
+
+        let i = 0;
+        routes.forEach((route) => {
+            if(route.path.includes("/blog/") && i < 5){
+                i++;
+                html += `
+                    <li class="col-sm-12">
+                        <a href="${route.path}" data-link>${route.metadata.title}</a>
+                        <p style="display: inline;">${route.metadata.date}</p>
+                    </li>
+                `;
+            }
+        });
+
         return `
             <div class="row">
                 <div class="col-sm-12">
@@ -30,13 +45,11 @@ export default class extends AbstractView {
                 <div class="col-sm-6">
                     <h3>Latest Blog Posts</h3>
                     <ul>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
+                       ${html}
                     </ul>
                 </div>
+
+                <!--
                 <div class="col-sm-6">
                     <h3>My Projects</h3>
                     <ul>
@@ -46,13 +59,16 @@ export default class extends AbstractView {
                         <li>Test</li>
                     </ul>
                 </div>
-            </div>
+                -->
 
-            <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <h3>Contact</h3>
                     <p>You can contact me via my <a href="mailto:pedrogomes2000.3@gmail.com">email</a></p>
                 </div>
+            </div>
+
+            <div class="row">
+                
             </div>
         `;
     }
