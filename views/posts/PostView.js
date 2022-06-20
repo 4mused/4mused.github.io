@@ -130,6 +130,7 @@ export default class extends AbstractView {
         <p>And note that you can backslash-escape any punctuation characters
         which you wish to be displayed literally, ex.: *bar*, etc.</p>
         
+        
         `;
     }
 }
