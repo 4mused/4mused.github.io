@@ -1,63 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Single Page App</title>
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/assets/Inter/inter.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/github-dark.min.css">
+        <title>Pedro Bentes</title>
+        <link class="favicon" rel="shortcut icon" href="./favicon/frame0.jpg" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
-</head>
-<body>
-    <nav>
-        <div class="myContainer">
-            <a href="/">
-                <img class="logo" src="/assets/favicon.png" alt="PB Logo" />
-            </a>
-    
-            <ul>
-                <li><a data-link href="/">Home</a></li>
-                <li><a data-link href="/blog">Blog</a></li>
-                <!--<li><a data-link href="/software">Software</a></li>-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+        <script>
+            const frames = [
+                "./favicon/frame0.jpg",
+                "./favicon/frame1.jpg",
+                "./favicon/frame2.jpg",
+                "./favicon/frame3.jpg",
+            ]
+
+            let i = 1;
+            let favicon = document.querySelector(".favicon");
+
+            setInterval(() => {
+                favicon.setAttribute('href', frames[i])
+                i++;
+                if(i > 3)
+                    i = 0;
+            }, 500)
+        </script>
+
+        <style>
+            * {
+                font-family: 'Fira Mono', monospace;
+
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+
+                transition: all 0.3s ease-in-out !important;
+
+                color: #222222;
+            }
+
+            main {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            h1 {
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 30px;
+            }
+
+            a {
+                font-weight: 700;
+                text-decoration: none;
+                line-height: 3rem;
+                position: relative;
+                color: black;
+            }
+
+            a::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                border-bottom: 2px solid black;
+                width: 0%;
+                transition: all 0.2s ease-in-out;
+            }
+
+            a:hover::before {
+                width: 100%;
+            }
+
+            p {
+                line-height: 3rem;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            ul.socials li {
+                display: inline-block;
+                margin-right: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Hello there!</h1>
+            <p>I'm Pedro, a software developer from Portugal.</p>
+            <p>I do mostly web development (Rust, JavaScript, Svelte, Vue).</p>
+            <p>Current position: Junior Software Developer <a href="https://www.viatecla.com/" target="_blank" rel="noopener noreferrer">@Viatecla</a></p>
+            <ul class="socials">
+                <li> <a href="https://github.com/pbentes" target="_blank">Github</a> </li>
+                <li> <a href="https://twitter.com/4musedWasTaken" target="_blank">Twitter</a> </li>
+                <li> <a href="https://dev.to/pbentes" target="_blank">DEV</a> </li>
             </ul>
-
-            <button><i class="mdi mdi-menu"></i></button>
-        </div>
-    </nav>
-
-    <div class="mobile">
-        <div class="myContainer">
-            <ul>
-                <li><a data-link href="/">Home</a></li>
-                <li><a data-link href="/blog">Blog</a></li>
-                <!--<li><a data-link href="/software">Software</a></li>-->
-            </ul>
-        </div>
-    </div>
-
-    <main>
-        <div id="app" class="myContainer">
-        </div>
-    </main>
-
-    <footer>
-        <div class="myContainer">
-            <p>© 2022 Pedro Bentes</p>
-            <ul>
-                <li><a target="blank" href="https://github.com/PedroBentesIO"><i class="mdi mdi-github"></i></a></li>
-                <li><a target="blank" href="https://www.linkedin.com/in/pgbgomes/"><i class="mdi mdi-linkedin"></i></a></li>
-                <li><a target="blank" href="https://twitter.com/4musedWasTaken"><i class="mdi mdi-twitter"></i></a></li>
-            </ul>
-        </div>
-    </footer>
-
-    <script type="module" src="/js/main.js"></script>
-</body>
+        </main>
+    </body>
 </html>
